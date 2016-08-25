@@ -193,17 +193,6 @@ var loadRefuge = function(ll, funcnext) {
 	var lngmin = lng - dll;
 	var lngmax = lng + dll;
 	
-	/*
-http://purl.org/jrrk#openingHours	10:00～22:30
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://purl.org/jrrk#PublicWIFI
-http://www.w3.org/2000/01/rdf-schema#label	器と手づくりの味　たんぽぽ
-http://purl.org/jrrk#hasPlugs	無
-http://purl.org/jrrk#address	鯖江市西袋町39-1-1
-http://schema.org/openingHoursSpecification	b0
-http://www.w3.org/2003/01/geo/wgs84_pos#long	136.274166
-http://www.w3.org/2003/01/geo/wgs84_pos#lat	35.951726
-http://schema.org/telephone	0778-65-37777
-	*/
 	var q =
 		"prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
 		"prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
@@ -224,11 +213,9 @@ http://schema.org/telephone	0778-65-37777
 			"filter(lang(?name) = 'ja')\n" +
 			"}\n" +
 		"}";
-//alert(lat + " " + lng);
 	querySPARQL(q, function(data) {
 //		dump(data);
 		var items = data.results.bindings;
-//		alert(items.length);
 		
 		bounds = new google.maps.LatLngBounds();
 		for (var i = 0; i < items.length; i++) {
@@ -486,21 +473,6 @@ var directions = function(org, dest) {
 		}
 	});
 }
-
-var parseInt2 = function(n) {
-	var n = parseInt(n);
-	if (isNaN(n))
-		return "-";
-	return n;
-};
-var jsonp = function(url) {
-	var head = document.getElementsByTagName("head")[0];
-   	var script = document.createElement("script");
-    script.setAttribute("src", url);
-    script.setAttribute("type", "text/javascript");
-//	script.setAttribute("id", 'jsonp');
-	head.appendChild(script);
-};
 
 var getLanguage2 = function() {
 	var lang = getLanguage();
